@@ -28,6 +28,7 @@ public class C01ReactorAPIs {
 
     private static void createFluxProgrammatically() {
         var generateFlux = Flux.generate(() -> 1, (state, sink) -> {
+            // 管道里面不断塞入字符串
             sink.next("message #" + state);
             if (state == 10) {
                 sink.complete();
@@ -118,15 +119,15 @@ public class C01ReactorAPIs {
     }
 
     public static void main(String[] args) {
-        createFluxFromExistingData();
+//        createFluxFromExistingData();
         createMonoFromExistingData();
-        createFluxProgrammatically();
-        createMonoAsync();
-        mapVsFlatMap();
-        monoFluxInterchange();
-        useThenForFlow();
-        zipMonoOrFlux();
-        errorHandling();
+//        createFluxProgrammatically();
+//        createMonoAsync();
+//        mapVsFlatMap();
+//        monoFluxInterchange();
+//        useThenForFlow();
+//        zipMonoOrFlux();
+//        errorHandling();
     }
 
 }

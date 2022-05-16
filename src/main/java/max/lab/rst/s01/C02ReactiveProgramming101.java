@@ -8,6 +8,7 @@ import java.util.Comparator;
 public class C02ReactiveProgramming101 {
     // 返回一个包含每种类别中最贵的书的列表, 响应式编程
     public static Flux<Book> getMostExpensiveBooksByCategoryReactive(Flux<Book> books) {
+        // 刚开始已经通过just转换为flux了
         return books.collectMultimap(Book::getCategory)
                 .flatMapMany(m -> Flux.fromIterable(m.entrySet()))
                 .flatMap(e -> Flux.fromIterable(e.getValue())
@@ -19,6 +20,6 @@ public class C02ReactiveProgramming101 {
         var pipeline = getMostExpensiveBooksByCategoryReactive(Flux.just(InMemoryDataSource.books));
         pipeline = pipeline.doOnNext(System.out::println);
         System.out.println("什么都不会发生，直到pipeline开始");
-        pipeline.subscribe();
+        pipeline.subscribe(); // 打开管道
     }
 }
